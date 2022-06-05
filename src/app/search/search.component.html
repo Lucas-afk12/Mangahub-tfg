@@ -1,0 +1,20 @@
+<mat-form-field class="example-form-field" appearance="fill">
+  <mat-label *ngIf="!value" style="color: white">Buscador..</mat-label>
+  <input
+    [formControl]="search"
+    autocomplete="false"
+    spellcheck="false"
+    matInput
+    type="text"
+    [(ngModel)]="value"
+  />
+  <button
+    *ngIf="value"
+    matSuffix
+    mat-icon-button
+    aria-label="Clear"
+    (click)="value = ''"
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>

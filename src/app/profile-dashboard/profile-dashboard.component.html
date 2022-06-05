@@ -1,0 +1,28 @@
+<div class="body">
+  <mat-grid-list cols="2" rowHeight="302px" >
+    <mat-grid-tile
+      *ngFor="let card of cards | async"
+      [colspan]="card.cols"
+      [rowspan]="card.rows"
+    >
+      <mat-card
+        class="dashboard-card"
+        style="background-image: url({{ card.image }});transition:0.3s"
+        (click)="goRoute(card.url)"
+      >
+        <mat-card-header style="display:flex;justify-content: center;  ">
+          <mat-card-title
+            style="font-size:60px ; color: white; -webkit-text-stroke: 1.5px black"
+          >
+            {{ card.title }}
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content"> </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

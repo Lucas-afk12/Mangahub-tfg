@@ -1,0 +1,52 @@
+<div class="loader" *ngIf="!load">
+  <div class="overlay">
+ 
+      <div class="spinner">
+          <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
+        </div>
+       
+      </div>
+</div>
+
+<div class="body" *ngIf="load">
+<app-input (search)="handleSearch($event)"></app-input>
+  <div class="container__cards"  
+  >
+    <div class="card" *ngFor="let manga of trueMangaArr | search: filterValue">
+      <div class="cover">
+        <div
+          class="img__back"
+          style="background-image: url({{ manga.Personal.imagen }})"
+        ></div>
+      </div>
+
+      <div class="description" [ngSwitch]="manga.Datos.genero">
+        <h2 *ngSwitchCase="'shounen'" style="background-color: #FF000090">
+          {{ manga.Datos.genero }}
+        </h2>
+
+        <h2 *ngSwitchCase="'shoujo'" style="background-color:#C300AB90">
+          {{ manga.Datos.genero }}
+        </h2>
+
+        <h2 *ngSwitchCase="'josei'" style="background-color: #FE81EF90">
+          {{ manga.Datos.genero }}
+        </h2>
+
+        <h2 *ngSwitchCase="'seinen'" style="background-color: #F1C40F90">
+          {{ manga.Datos.genero }}
+        </h2>
+
+        <h2 *ngSwitchCase="null" style="background-color: #28374790">
+          No disponible
+        </h2>
+        <div>
+        <h1>{{ manga.Datos.titulo }}</h1>
+      </div>
+        <p>{{ manga.Datos.descripcion }}</p>
+
+        <input type="button" value="Leer Más" (click)="leer(manga)" />
+      </div>
+    </div>
+  </div>
+  </div>

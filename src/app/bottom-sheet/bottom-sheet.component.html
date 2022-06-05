@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="header">
+    <div *ngIf="load">
+      <button (click)="favourite()" *ngIf="!isFavorite">
+        <fa-icon
+          [icon]="faHeartBroken"
+          *ngIf="!isFavorite"
+          style="color: red"
+        ></fa-icon>
+      </button>
+      <button (click)="favourite()" *ngIf="isFavorite">
+        <fa-icon
+          [icon]="faHeart"
+          *ngIf="isFavorite"
+          style="color: red"
+        ></fa-icon>
+      </button>
+    </div>
+
+    <div>
+      <h1>{{ trueManga.Datos.titulo }}</h1>
+      <img src="{{ trueManga.Personal.imagen }}" />
+    </div>
+    <div class="atributos" [ngSwitch]="trueManga.Datos.estado">
+      <p><b>Tipo:</b> {{ trueManga.tipo }}</p>
+      <p><b>Autor:</b> {{ trueManga.Personal.autor }}</p>
+      <p><b>Genero:</b> {{ trueManga.Datos.genero }}</p>
+      <p><b>Fecha de publicación:</b> {{ trueManga.Datos.fechaCreacion }}</p>
+      <p>
+        <b>Estado:</b>
+        <span
+          *ngSwitchCase="'ongoing'"
+          id="status"
+          style="background-color: #2ecc7190"
+          >{{ trueManga.Datos.estado }}</span
+        >
+        <span
+          *ngSwitchCase="'hiatus'"
+          id="status"
+          style="background-color: #f4d03f90"
+          >{{ trueManga.Datos.estado }}</span
+        >
+        <span
+          *ngSwitchCase="'completed'"
+          id="status"
+          style="background-color: #2874a690"
+          >{{ trueManga.Datos.estado }}</span
+        >
+        <span
+          *ngSwitchCase="'cancelled'"
+          id="status"
+          style="background-color: #e74c3c90"
+          >{{ trueManga.Datos.estado }}</span
+        >
+      </p>
+    </div>
+    <p class="descripcion">
+      <b>Descripcion:</b><br />{{ trueManga.Datos.descripcion }}
+    </p>
+    <h1>Capitulos</h1>
+    <div *ngFor="let a of chapters">
+      <a (click)="read(a.id)">{{ a.chapter }}</a>
+    </div>
+    <!-- <div *ngFor="let capitulo of trueChapter">
+      <p>{{ capitulo.volume }}</p>
+    </div> -->
+  </div>
+</div>
